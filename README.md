@@ -1,0 +1,1 @@
+# fast class to track a moving window array
