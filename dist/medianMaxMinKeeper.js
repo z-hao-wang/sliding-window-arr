@@ -6,7 +6,7 @@ class MedianMaxMinKeeper {
     constructor(props) {
         this.maxHeap = new Heap();
         this.minHeap = new Heap([], null, (a, b) => b - a);
-        this.maxLen = props.periods;
+        this.maxLen = props.period;
         this.valuesArr = new slidingWindowArr_1.SlidingWindowArr({ maxLen: this.maxLen });
     }
     add(value) {

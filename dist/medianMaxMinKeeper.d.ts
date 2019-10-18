@@ -5,7 +5,7 @@ export declare class MedianMaxMinKeeper {
     maxHeap: any;
     minHeap: any;
     constructor(props: {
-        periods: number;
+        period: number;
     });
     add(value: number): boolean;
     getMedian(): any;
