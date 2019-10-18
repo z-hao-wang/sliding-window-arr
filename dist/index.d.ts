@@ -1,2 +1,3 @@
 export * from './slidingWindowArr';
-export * from './medianMaxMinKeeper';
+export * from './medianKeeper';
+export * from './maxMinKeeper';

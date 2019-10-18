@@ -1,7 +1,7 @@
 import { SlidingWindowArr } from './slidingWindowArr';
 const Heap = require('collections/heap');
 
-export class MedianMaxMinKeeper {
+export class MedianKeeper {
   maxLen: number;
   valuesArr: SlidingWindowArr;
   maxHeap = new Heap();
@@ -60,14 +60,6 @@ export class MedianMaxMinKeeper {
 
   getMaxLen() {
     return this.maxLen;
-  }
-
-  getMax() {
-    return this.maxHeap.peek();
-  }
-
-  getMin() {
-    return this.minHeap.peek();
   }
 
   debug() {

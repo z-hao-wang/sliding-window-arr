@@ -1,5 +1,5 @@
 import { SlidingWindowArr } from './slidingWindowArr';
-export declare class MedianMaxMinKeeper {
+export declare class MedianKeeper {
     maxLen: number;
     valuesArr: SlidingWindowArr;
     maxHeap: any;
@@ -10,7 +10,5 @@ export declare class MedianMaxMinKeeper {
     add(value: number): boolean;
     getMedian(): any;
     getMaxLen(): number;
-    getMax(): any;
-    getMin(): any;
     debug(): void;
 }

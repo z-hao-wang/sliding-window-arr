@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const slidingWindowArr_1 = require("./slidingWindowArr");
 const Heap = require('collections/heap');
-class MedianMaxMinKeeper {
+class MedianKeeper {
     constructor(props) {
         this.maxHeap = new Heap();
         this.minHeap = new Heap([], null, (a, b) => b - a);
@@ -51,14 +51,8 @@ class MedianMaxMinKeeper {
     getMaxLen() {
         return this.maxLen;
     }
-    getMax() {
-        return this.maxHeap.peek();
-    }
-    getMin() {
-        return this.minHeap.peek();
-    }
     debug() {
         console.log(`maxHeap=${this.maxHeap.peek()} minHeap=${this.minHeap.peek()} maxHeapLen=${this.maxHeap.length} minHeapLen=${this.minHeap.length}`);
     }
 }
-exports.MedianMaxMinKeeper = MedianMaxMinKeeper;
+exports.MedianKeeper = MedianKeeper;
