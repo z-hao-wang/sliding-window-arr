@@ -11,7 +11,7 @@ class MaxMinKeeper {
     }
     add(value) {
         // delete old values first
-        if (this.valuesArr.length() == this.maxLen) {
+        if (this.valuesArr.length() === this.maxLen) {
             this.maxHeap.delete(this.valuesArr.first());
             this.minHeap.delete(this.valuesArr.first());
         }
