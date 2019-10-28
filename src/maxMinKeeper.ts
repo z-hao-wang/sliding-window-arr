@@ -1,39 +1,60 @@
 import { SlidingWindowArr } from './slidingWindowArr';
+const Deque = require('collections/deque');
 
+// algorithm source https://www.nayuki.io/page/sliding-window-minimum-maximum-algorithm
+// https://www.nayuki.io/res/sliding-window-minimum-maximum-algorithm/slidingwindowminmax.py
 export class MaxMinKeeper {
   maxLen: number;
-  valuesArr: SlidingWindowArr;
-  maxArr: SlidingWindowArr;
-  minArr: SlidingWindowArr;
-
-  protected currentMax = 0;
-  protected currentMin = Number.MAX_SAFE_INTEGER;
+  valuesArr: SlidingWindowArr<number>;
+  maxArr: any;
+  minArr: any;
 
   constructor(props: { period: number }) {
     this.maxLen = props.period;
-    this.valuesArr = new SlidingWindowArr({ maxLen: this.maxLen });
-    this.maxArr = new SlidingWindowArr({ maxLen: this.maxLen });
-    this.minArr = new SlidingWindowArr({ maxLen: this.maxLen });
+    this.valuesArr = new SlidingWindowArr<number>({ maxLen: this.maxLen });
+    this.maxArr = new Deque([]);
+    this.minArr = new Deque([]);
+  }
+
+  private addTail(value: number) {
+    while (this.minArr.length > 0 && value < this.minArr[this.minArr.length - 1]) {
+      this.minArr.pop();
+    }
+    this.minArr.push(value);
+    while (this.maxArr.length > 0 && value > this.maxArr[this.maxArr.length - 1]) {
+      this.maxArr.pop();
+    }
+    this.maxArr.push(value);
+  }
+
+  private removeHead(value: number) {
+    if (value < this.minArr.peek()) {
+      throw new Error(`wrong minArr value ${value}`);
+    } else if (value === this.minArr.peek()) {
+      this.minArr.shift();
+    }
+
+    if (value > this.maxArr.peek()) {
+      throw new Error(`wrong maxArr value ${value}`);
+    } else if (value === this.maxArr.peek()) {
+      this.maxArr.shift();
+    }
   }
 
   add(value: number) {
-    if (this.valuesArr.length() === 0) {
-      this.currentMin = this.currentMax = value;
-    } else {
-      this.currentMax = Math.max(this.currentMax, value);
-      this.currentMin = Math.min(this.currentMin, value);
+    if (this.valuesArr.length() === this.maxLen) {
+      this.removeHead(this.valuesArr.first()!);
     }
+    this.addTail(value);
     this.valuesArr.push(value);
-    this.maxArr.push(this.currentMax);
-    this.minArr.push(this.currentMin);
   }
 
   getMax() {
-    return this.maxArr.last();
+    return this.maxArr.peek();
   }
 
   getMin() {
-    return this.minArr.last();
+    return this.minArr.peek();
   }
 
   getMaxLen() {
