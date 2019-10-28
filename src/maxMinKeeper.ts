@@ -1,34 +1,39 @@
 import { SlidingWindowArr } from './slidingWindowArr';
-const Heap = require('collections/heap');
 
 export class MaxMinKeeper {
   maxLen: number;
   valuesArr: SlidingWindowArr;
-  maxHeap = new Heap();
-  minHeap = new Heap([], null, (a: number, b: number) => b - a);
+  maxArr: SlidingWindowArr;
+  minArr: SlidingWindowArr;
+
+  protected currentMax = 0;
+  protected currentMin = Number.MAX_SAFE_INTEGER;
 
   constructor(props: { period: number }) {
     this.maxLen = props.period;
     this.valuesArr = new SlidingWindowArr({ maxLen: this.maxLen });
+    this.maxArr = new SlidingWindowArr({ maxLen: this.maxLen });
+    this.minArr = new SlidingWindowArr({ maxLen: this.maxLen });
   }
 
   add(value: number) {
-    // delete old values first
-    if (this.valuesArr.length() === this.maxLen) {
-      this.maxHeap.delete(this.valuesArr.first());
-      this.minHeap.delete(this.valuesArr.first());
+    if (this.valuesArr.length() === 0) {
+      this.currentMin = this.currentMax = value;
+    } else {
+      this.currentMax = Math.max(this.currentMax, value);
+      this.currentMin = Math.min(this.currentMin, value);
     }
     this.valuesArr.push(value);
-    this.maxHeap.push(value);
-    this.minHeap.push(value);
+    this.maxArr.push(this.currentMax);
+    this.minArr.push(this.currentMin);
   }
 
   getMax() {
-    return this.maxHeap.peek();
+    return this.maxArr.last();
   }
 
   getMin() {
-    return this.minHeap.peek();
+    return this.minArr.last();
   }
 
   getMaxLen() {
@@ -36,10 +41,6 @@ export class MaxMinKeeper {
   }
 
   debug() {
-    console.log(
-      `maxHeap=${this.maxHeap.peek()} minHeap=${this.minHeap.peek()} maxHeapLen=${this.maxHeap.length} minHeapLen=${
-        this.minHeap.length
-      }`,
-    );
+    console.log(`max=${this.getMax()} getMin=${this.getMin()}`);
   }
 }

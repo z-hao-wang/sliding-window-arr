@@ -2,14 +2,16 @@ import { SlidingWindowArr } from './slidingWindowArr';
 export declare class MaxMinKeeper {
     maxLen: number;
     valuesArr: SlidingWindowArr;
-    maxHeap: any;
-    minHeap: any;
+    maxArr: SlidingWindowArr;
+    minArr: SlidingWindowArr;
+    protected currentMax: number;
+    protected currentMin: number;
     constructor(props: {
         period: number;
     });
     add(value: number): void;
-    getMax(): any;
-    getMin(): any;
+    getMax(): number | undefined;
+    getMin(): number | undefined;
     getMaxLen(): number;
     debug(): void;
 }
