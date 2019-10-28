@@ -17,11 +17,11 @@ export class MaxMinKeeper {
   }
 
   private addTail(value: number) {
-    while (this.minArr.length > 0 && value < this.minArr[this.minArr.length - 1]) {
+    while (this.minArr.length > 0 && value < this.minArr.peekBack()) {
       this.minArr.pop();
     }
     this.minArr.push(value);
-    while (this.maxArr.length > 0 && value > this.maxArr[this.maxArr.length - 1]) {
+    while (this.maxArr.length > 0 && value > this.maxArr.peekBack()) {
       this.maxArr.pop();
     }
     this.maxArr.push(value);
@@ -29,13 +29,13 @@ export class MaxMinKeeper {
 
   private removeHead(value: number) {
     if (value < this.minArr.peek()) {
-      throw new Error(`wrong minArr value ${value}`);
+      throw new Error(`wrong minArr value ${value} min=${this.minArr.peek()}`);
     } else if (value === this.minArr.peek()) {
       this.minArr.shift();
     }
 
     if (value > this.maxArr.peek()) {
-      throw new Error(`wrong maxArr value ${value}`);
+      throw new Error(`wrong maxArr value ${value} max=${this.maxArr.peek()}`);
     } else if (value === this.maxArr.peek()) {
       this.maxArr.shift();
     }
