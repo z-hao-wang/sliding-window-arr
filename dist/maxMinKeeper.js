@@ -42,6 +42,9 @@ class MaxMinKeeper {
         this.addTail(value);
         this.valuesArr.push(value);
     }
+    getLen() {
+        return this.valuesArr.length();
+    }
     getMax() {
         return this.maxArr.peek();
     }

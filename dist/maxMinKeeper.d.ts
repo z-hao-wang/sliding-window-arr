@@ -10,6 +10,7 @@ export declare class MaxMinKeeper {
     private addTail;
     private removeHead;
     add(value: number): void;
+    getLen(): number;
     getMax(): any;
     getMin(): any;
     getMaxLen(): number;
