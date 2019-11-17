@@ -1,6 +1,6 @@
 {
   "name": "sliding-window-arr",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,9 +21,7 @@
     "type": "git",
     "url": "https://github.com/z-hao-wang/sliding-window-arr.git"
   },
-  "dependencies": {
-    "collections": "^5.1.9"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^12.11.1",
     "@types/jest": "^24.0.19",
