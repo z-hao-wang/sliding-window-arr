@@ -82,6 +82,13 @@ export class SlidingWindowArr<T = number> {
     return this.get(this.arr.length - 1);
   }
 
+  findIndex(prediction: (x: T) => boolean) {
+    for (let i = 0; i < this.length(); i++) {
+      if (prediction(this.get(i))) return i;
+    }
+    return -1;
+  }
+
   length() {
     return this.arr.length;
   }

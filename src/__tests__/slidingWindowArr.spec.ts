@@ -30,4 +30,21 @@ describe('slidingWindowArr', function() {
     expect(a1.first()).toEqual(3);
     expect(a1.last()).toEqual(4);
   });
+
+  it('findIndex should work', function() {
+    const a1 = new SlidingWindowArr({
+      maxLen: 3,
+    });
+
+    a1.push(1);
+    a1.push(3);
+    a1.push(2);
+
+    expect(a1.findIndex(x => x === 1)).toBe(0);
+    expect(a1.findIndex(x => x === 3)).toBe(1);
+    expect(a1.findIndex(x => x === 8)).toBe(-1);
+    a1.push(4);
+    expect(a1.findIndex(x => x === 1)).toBe(-1);
+    expect(a1.findIndex(x => x === 3)).toBe(0);
+  });
 });

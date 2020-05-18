@@ -18,6 +18,7 @@ export declare class SlidingWindowArr<T = number> {
     set(i: number, item: T): void;
     first(): T | undefined;
     last(): T | undefined;
+    findIndex(prediction: (x: T) => boolean): number;
     length(): number;
     isFull(): boolean;
 }

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SlidingWindowArr = void 0;
 class SlidingWindowArr {
     constructor(options) {
         this.arr = [];
@@ -67,6 +68,13 @@ class SlidingWindowArr {
         if (this.arr.length === 0)
             return undefined;
         return this.get(this.arr.length - 1);
+    }
+    findIndex(prediction) {
+        for (let i = 0; i < this.length(); i++) {
+            if (prediction(this.get(i)))
+                return i;
+        }
+        return -1;
     }
     length() {
         return this.arr.length;
