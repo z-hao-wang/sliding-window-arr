@@ -9,6 +9,7 @@ export declare class SlidingWindowArr<T = number> {
     private cursor;
     constructor(options: SlidingWindowArr.Options);
     map<RET_T = number>(func: (value: T, index: number) => RET_T): any[];
+    forEach(func: (value: T, index: number) => void): void;
     setMaxLen(maxLen: number): void;
     toUnorderedArr(): T[];
     toOrderedArr(): any[];

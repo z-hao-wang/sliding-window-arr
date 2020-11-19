@@ -14,6 +14,11 @@ class SlidingWindowArr {
         }
         return ret;
     }
+    forEach(func) {
+        for (let i = 0; i < this.length(); i++) {
+            func(this.get(i), i);
+        }
+    }
     setMaxLen(maxLen) {
         if (this.arr.length > 0) {
             console.error('error! setting maxLen with arr length > 0');
