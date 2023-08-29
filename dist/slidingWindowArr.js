@@ -5,6 +5,8 @@ class SlidingWindowArr {
     constructor(options) {
         this.arr = [];
         this.cursor = 0;
+        if (!options.maxLen)
+            throw new Error(`SlidingWindowArr maxLen must > 0`);
         this.maxLen = options.maxLen;
     }
     map(func) {

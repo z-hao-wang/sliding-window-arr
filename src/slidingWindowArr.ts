@@ -10,6 +10,7 @@ export class SlidingWindowArr<T = number> {
   private cursor: number = 0;
 
   constructor(options: SlidingWindowArr.Options) {
+    if (!options.maxLen) throw new Error(`SlidingWindowArr maxLen must > 0`)
     this.maxLen = options.maxLen;
   }
 
